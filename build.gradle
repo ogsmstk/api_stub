@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.myapp.api'
+version = '1.0-SNAPSHOT'
+
+// compileJavaタスクのエンコーディング
+compileJava.options.encoding = 'UTF-8'
+// compileTestJavaタスクのエンコーディング
+compileTestJava.options.encoding = 'UTF-8'
+// javadocタスクのエンコーディング
+javadoc.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // WEBアプリケーションを構築するために以下２件をインストール
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '3.3.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.3.0'
+    // 定型コードの生成を自動化する
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+    // Redisのドライバ
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '3.3.0'
+    // Json
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.17.1'
+
+}
+
+
+test {
+    useJUnitPlatform()
+}
